@@ -3,5 +3,7 @@
     <string name="app_name">Android-Download</string>
     <string name="download_options">Download options</string>
     <string name="intent_service">Intent Service</string>
+    <string name="message_in">Input</string>
+    <string name="message_out">Output</string>
 
 </resources>

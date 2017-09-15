@@ -12,10 +12,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/padding_medium"
+        android:layout_gravity="center"
+        android:padding="@dimen/padding_medium"
         android:text="@string/download_options"
         android:textStyle="bold"
-        android:textSize="@dimen/text_size_title"/>
+        android:textSize="@dimen/text_size_title"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <ScrollView
         android:layout_width="match_parent"
