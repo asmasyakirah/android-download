@@ -22,7 +22,7 @@ public class MyIntentService extends IntentService
     public MyIntentService()
     {
         super(MyIntentService.class.getName());
-        Log.e(TAG, "super MyIntentService");
+        Log.e(TAG, "super " + TAG);
     }
     
     @Override

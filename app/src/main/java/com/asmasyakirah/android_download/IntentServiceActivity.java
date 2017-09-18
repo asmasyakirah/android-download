@@ -29,18 +29,16 @@ public class IntentServiceActivity extends AppCompatActivity implements MyIntent
     TextView outputTextView;
     LinearLayout outputLayout;
 
-    ArrayList<String> processName = new ArrayList<String>();
-    ArrayList<Integer> processStatus  = new ArrayList<Integer>();
+    Process myProcess;
     int processIndex;
-    int processPending;
-    int processRunning;
-    int processComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intent_service);
+        myProcess = new Process();
+        Log.e(TAG, "onCreate " + TAG);
     }
 
     public void startDownload(View view)
@@ -51,15 +49,8 @@ public class IntentServiceActivity extends AppCompatActivity implements MyIntent
 
         // Add new download
         String msgIn = inputEditText.getText().toString();
-        processName.add(msgIn);
-        processStatus.add(MyIntentService.STATUS_PENDING);
-
-        // Reset input and output UI
-        inputEditText.setText("");
-        outputLayout.setVisibility(View.VISIBLE);
-
-        // Count new download
-        updateOutput();
+        processIndex = myProcess.add(msgIn);
+        Log.e(TAG, processIndex + "," + msgIn + "," + myProcess.getName(processIndex));
 
         // Starting Intent Service
         mReceiver = new MyIntentServiceReceiver(new Handler());
@@ -68,26 +59,28 @@ public class IntentServiceActivity extends AppCompatActivity implements MyIntent
         intent.putExtra(MyIntentService.PARAM_MSG_INDEX, processIndex);
         intent.putExtra(MyIntentService.PARAM_MSG_IN, msgIn);
         intent.putExtra(MyIntentService.PARAM_RECEIVER, mReceiver);
-        //intent.putExtra("requestId", 101);
         startService(intent);
-        Log.e(TAG, "started MyIntentService");
+
+        // Reset input and output UI
+        inputEditText.setText("");
+        outputLayout.setVisibility(View.VISIBLE);
+        updateOutput();
     }
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData)
     {
-        int msgIndex = resultData.getInt(MyIntentService.PARAM_MSG_INDEX);
         String msgOut = resultData.getString(MyIntentService.PARAM_MSG_OUT);
-        //outputTextView.setText(msgOut);
+        int msgIndex = resultData.getInt(MyIntentService.PARAM_MSG_INDEX);
 
         switch (resultCode)
         {
             case MyIntentService.STATUS_RUNNING:
-                processStatus.set(msgIndex, MyIntentService.STATUS_RUNNING);
+                myProcess.start(msgIndex);
                 break;
 
             case MyIntentService.STATUS_COMPLETE:
-                processStatus.set(msgIndex, MyIntentService.STATUS_COMPLETE);
+                myProcess.end(msgIndex);
                 break;
         }
 
@@ -96,35 +89,6 @@ public class IntentServiceActivity extends AppCompatActivity implements MyIntent
 
     private void updateOutput()
     {
-        processPending  = 0;
-        processRunning  = 0;
-        processComplete = 0;
-        processIndex = processName.size()-1;
-        for (int loop=0; loop<processName.size(); loop++)
-        {
-            switch (processStatus.get(loop))
-            {
-                case MyIntentService.STATUS_PENDING:
-                    processPending++;
-                    break;
-                case MyIntentService.STATUS_RUNNING:
-                    processRunning++;
-                    break;
-                case MyIntentService.STATUS_COMPLETE:
-                    processComplete++;
-                    break;
-            }
-        }
-        if (processStatus.contains(MyIntentService.STATUS_RUNNING))
-        {
-            outputTextView.setText(
-                    "Downloading " + processName.get(0)
-                    + "(" + (processStatus.indexOf(MyIntentService.STATUS_RUNNING)+1) + "/" + processName.size() + ")");
-            outputTextView.append(processName.get(0));
-        }
-        else
-        {
-            outputTextView.setText(processComplete + " downloads completed");
-        }
+        outputTextView.setText(myProcess.getProcessSummary());
     }
 }
