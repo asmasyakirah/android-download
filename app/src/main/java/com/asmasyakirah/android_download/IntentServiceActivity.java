@@ -48,13 +48,15 @@ public class IntentServiceActivity extends AppCompatActivity implements MyIntent
         inputEditText = (EditText) findViewById(R.id.inputEditText);
         outputTextView = (TextView) findViewById(R.id.outputTextView);
         outputLayout = (LinearLayout) findViewById(R.id.outputLayout);
-        inputEditText.setText("");
-        outputLayout.setVisibility(View.VISIBLE);
 
         // Add new download
         String msgIn = inputEditText.getText().toString();
         processName.add(msgIn);
         processStatus.add(MyIntentService.STATUS_PENDING);
+
+        // Reset input and output UI
+        inputEditText.setText("");
+        outputLayout.setVisibility(View.VISIBLE);
 
         // Count new download
         updateOutput();
