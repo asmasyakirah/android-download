@@ -30,7 +30,7 @@ public class IntentServiceActivity extends AppCompatActivity implements MyIntent
     LinearLayout outputLayout;
 
     ArrayList<String> processName = new ArrayList<String>();
-    ArrayList<Integer> processStatus  = new ArrayList<Integer>();;
+    ArrayList<Integer> processStatus  = new ArrayList<Integer>();
     int processIndex;
     int processPending;
     int processRunning;
