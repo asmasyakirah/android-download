@@ -1,29 +1,19 @@
-# README #
-
-This README would normally document whatever steps are necessary to get your application up and running.
+# Android-Download #
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+This simple Android app demonstrates how I would like to do my data download one-by-one in queue without causing ANR (Application Not Responding) or interrupting my UI thread. 
+Everytime I click the Start button, new download will be added to queue.
 
-### How do I get set up? ###
+### How it is done? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+1. IntentServicesimple Android app
+* I use IntentService to create a Background Service. This service will do download task asynchronously.
+2. ResultReceiver
+* I implemented ResultReceiver to receive update from IntentService to my UI thread. Then I can show the summary of current progress in the UI.
 
-### Contribution guidelines ###
+### References ###
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+1. https://code.tutsplus.com/tutorials/android-fundamentals-intentservice-basics--mobile-6183
+2. http://stacktips.com/tutorials/android/creating-a-background-service-in-android
+3. https://github.com/StackTipsLab/Android-IntentService-Example*
