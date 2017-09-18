@@ -11,9 +11,9 @@ Everytime I click the Start button, new download will be added to queue.
 2. **ResultReceiver**. I implemented ResultReceiver to receive update from IntentService to my UI thread. Then I can show the summary of current progress in the UI.
 
 ### Screenshots ###
-![Download start](https://bytebucket.org/asmasyakirah/android-download/raw/0e82fa3057c5fa96e9c64d9afc6ccbe571f1b2de/download_start.png)
-![Download running](https://bytebucket.org/asmasyakirah/android-download/raw/0e82fa3057c5fa96e9c64d9afc6ccbe571f1b2de/download_running.png)
-![Download completed](https://bytebucket.org/asmasyakirah/android-download/raw/0e82fa3057c5fa96e9c64d9afc6ccbe571f1b2de/download_completed.png)
+![Download start](https://bytebucket.org/asmasyakirah/android-download/raw/addbe2added0ecda24bba86547f24f4f595e11ee/download_start.png)
+![Download running](https://bytebucket.org/asmasyakirah/android-download/raw/addbe2added0ecda24bba86547f24f4f595e11ee/download_running.png)
+![Download completed](https://bytebucket.org/asmasyakirah/android-download/raw/addbe2added0ecda24bba86547f24f4f595e11ee/download_completed.png)
 
 ### References ###
 
