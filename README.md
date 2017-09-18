@@ -7,8 +7,8 @@ Everytime I click the Start button, new download will be added to queue.
 
 ### How it is done? ###
 
-1. IntentServicesimple. I use IntentService to create a Background Service. This service will do download task asynchronously.
-2. ResultReceiver. I implemented ResultReceiver to receive update from IntentService to my UI thread. Then I can show the summary of current progress in the UI.
+1. **IntentService**. I use IntentService to create a Background Service. This service will do download task asynchronously.
+2. **ResultReceiver**. I implemented ResultReceiver to receive update from IntentService to my UI thread. Then I can show the summary of current progress in the UI.
 
 ### References ###
 
